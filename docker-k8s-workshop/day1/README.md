@@ -28,7 +28,38 @@ Kubernetes manages container orchestration at scale by automating deployment, sc
 ## How to Run Locally
 
 ```bash
-docker run -d -p 8090:8080 shivam1869/flask-hello-world:day1
+sudo docker run -d -p 8090:8080 shivam1869/flask-hello-world:day1
 ```
+Then open your browser and go to:
+http://localhost:8090
 
+You will see:
+    Hello, World from Docker + Flask!
 
+## Build and Push the Docker Image
+**1. Build the Docker Image**
+```bash
+sudo docker build -t shivam/flask-hello-world:day1 .
+```
+This command builds the image using your local **Dockerfile** and gives it the name **shivam/flask-hello-world** with the **day1** tag.
+
+**2. Tag the Image with Your Docker Hub Username**
+```bash
+sudo docker tag shivam/flask-hello-world:day1 shivam1869/flask-hello-world:day1
+```
+This command adds a new tag to the image, replacing **shivam** with your actual Docker Hub username **shivam1869** so it can be pushed to your Docker Hub repository.
+
+**3. Push the Image to Docker Hub**
+```bash
+sudo docker push shivam1869/flask-hello-world:day1
+```
+This uploads your tagged image to your public Docker Hub repository:
+🔗 https://hub.docker.com/r/shivam1869/flask-hello-world
+
+**4. Pull the Image (optional test)**
+
+You can test the image by pulling it from Docker Hub on any system:
+```bash
+sudo docker pull shivam1869/flask-hello-world:day1
+```
+This ensures your image is publicly available and working correctly.
