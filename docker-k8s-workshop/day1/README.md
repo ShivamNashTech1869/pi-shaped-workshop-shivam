@@ -63,3 +63,10 @@ You can test the image by pulling it from Docker Hub on any system:
 sudo docker pull shivam1869/flask-hello-world:day1
 ```
 This ensures your image is publicly available and working correctly.
+
+## Docker Hub Image
+
+![Docker Hub Image](./dockerhub_image.png)
+
+The above screenshot shows the successfully pushed Docker image:  
+[`shivam1869/flask-hello-world:day1`](https://hub.docker.com/r/shivam1869/flask-hello-world)
