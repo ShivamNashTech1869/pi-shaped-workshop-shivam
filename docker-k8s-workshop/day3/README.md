@@ -52,13 +52,13 @@ In Day 3 of this workshop, we focused on Kubernetes networking concepts, service
 
 ## Screenshots
 
-- Deployment, Services, and Ingress applied successfully in Minikube:  
+- Deployment, Services, and Ingress applied successfully in Minikube:
   `screenshots/terminal_deployment_services_ingress_minikube-ip.png`
 
-- Application accessed successfully via Ingress URL:  
+- Application accessed successfully via Ingress URL:
   `screenshots/app_access_via_ingress.png`
   
-- Application accessed successfully via NodePort URL:  
+- Application accessed successfully via NodePort URL:
   `screenshots/app_access_via_nodePort.png`
 
 
@@ -76,8 +76,33 @@ In Day 3 of this workshop, we focused on Kubernetes networking concepts, service
 
 ## How to Test
 
-1. Apply Deployment:  
+1. Apply Deployment:
    ```bash
    kubectl apply -f deployment.yaml
    ```
+
+2. Apply Services:
+    ```bash
+   kubectl apply -f nodeportservice.yaml
+   kubectl apply -f clusteripservice.yaml
+   ```
+   
+3. Apply Ingress:
+   ```bash
+   kubectl apply -f ingress.yaml
+   ```
+4. Access app using:
+  - NodePort URL: http://<minikube-ip>:30036/
+  - Ingress URL: http://<minikube-ip>/flask-app
+  
+   Example:
+   Run command:
+   ```bash
+   minikube ip
+   ```
+  Output:
+   ```bash
+   192.168.49.2
+   ```
+   Access the app at: http://192.168.49.2/flask-app
 
