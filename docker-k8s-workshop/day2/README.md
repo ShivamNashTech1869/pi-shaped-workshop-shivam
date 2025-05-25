@@ -33,13 +33,54 @@ It helps optimize resource usage, improve performance, and meet compliance or ar
 ## **How to Run Locally**
 
 1. Pull and run the Docker image:
-
    ```bash
    sudo docker run -d -p 8090:8080 --name flask-container shivam1869/flask-hello-world:day1
    ```
-  
 2. Open your browser and visit:
    ```bash
    http://localhost:8090
    ```
 
+## **How to Run on Kubernetes (Minikube)**
+1. Start your minikube if not running:
+   ```bash
+   minikube start
+   ```
+2. Apply the deployment manifest:
+   ```bash
+   kubectl apply -f deployment.yaml
+   ```
+3. Verify the pods are running:
+   ```bash
+   kubectl get pods -o wide
+   ```
+4. Apply the service manifest:
+   ```bash
+   kubectl apply -f service.yaml
+   ```
+5. Check service details:
+   ```bash
+   kubectl get service flask-service
+   ```
+  
+6. Get Minikube IP:
+   ```bash
+   minikube ip
+   ```
+7. Open your browser with the following URL:
+   ```bash
+   http://<minikube-ip>:<node-port>
+   ```
+   Example: - http://192.168.49.2:30036
+
+**Notes**
+
+ -   The container listens on port 8080, and the NodePort service maps it to port 30036.
+
+ -   Resource requests and limits are set for CPU and memory in deployment.yaml.
+
+ -   Node affinity was experimented with but later removed due to scheduling issues on Minikube single-node cluster.
+
+
+## Pods Running Image
+![Pods Running](screenshots/podsRunningAndNodePlacement.png)
