@@ -52,6 +52,7 @@ Helm maintains a revision history of every installation and upgrade. If a deploy
    helm rollback < release-name > < revision-number >
    ```
    This makes incident recovery fast, reliable, and minimizes downtime.
+
 ---
 
 ## **Project Setup**
@@ -64,7 +65,57 @@ Helm maintains a revision history of every installation and upgrade. If a deploy
 
 ---
 
-## How to Test
+## Installation & Upgrade Steps
 
+**1. Install Helm (if not already installed)**
 
+   On Ubuntu or Debian-based systems, you can install Helm using Snap:
+   ```bash
+   sudo snap install helm --classic
+   ```
 
+**2. Package the Helm Chart**
+   ```bash
+   helm package .
+   ```
+   This creates a .tgz Helm chart archive (e.g., `flask-app-0.1.0.tgz`).
+   
+**3. Install the Helm Chart**
+   ```bash
+   helm install flask-app ./flask-app
+   ```
+This deploys the app to your Kubernetes cluster using values from `values.yaml`.
+You can verify the deployment and pods with:
+   ```bash
+    kubectl get deployment
+    kubectl get pods
+   ```
+**4. Upgrade the Release (Change Replica Count)**
+  
+  To scale the app from 3 to 5 replicas, modify the `replicaCount` in `values.yaml`:
+   ```bash
+   kubectl get pods
+   ```
+Then upgrade the deployment with:
+   ```bash
+   helm upgrade flask-app-release ./flask-app
+   ```
+Verify the updated pods:
+   ```bash
+   kubectl get pods
+   ```
+**5. Optional: Rollback (in case of issue)**
+
+Helm supports easy rollback:
+   ```bash
+   helm rollback flask-app-release 1
+   ```
+Replace `1` with the desired revision number as needed.
+
+## Screenshots
+
+- Helm installation success:
+  ![Helm installation](screenshots/helm_install_success.png)
+
+- Helm upgrade to scale replicas from 3 to 5:
+  ![Helm upgrade](screenshots/helm-upgrade-replicas.png)
