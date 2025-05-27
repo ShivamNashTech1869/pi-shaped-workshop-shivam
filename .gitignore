@@ -1,1 +1,37 @@
 minikube-linux-amd64
+
+# Helm chart generated packages
+*.tgz
+
+# Kubernetes/Helm output files
+release.yaml
+output.yaml
+
+# Mac system files
+.DS_Store
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Helm debug files
+helm-debug.log
+
+# NodePort info if saved
+nodeport.txt
+
+# Chart lock file (if not needed for version control)
+Chart.lock
+
+# Ignore Kubernetes secrets or local env files
+.env
+*.secret.yaml
+
+# Ignore Helm release state files (if you store them locally for testing)
+.release-info.json

@@ -1,0 +1,34 @@
+replicaCount: 3
+
+image:
+  repository: shivam1869/flask-hello-world
+  tag: day1
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30037
+
+containerPort: 8080
+
+serviceAccount:
+  create: true
+  name: ""
+
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+  hosts:
+    - host: flask-app.local
+      paths:
+        - path: /flask-app
+          pathType: Prefix
+  tls: []
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
