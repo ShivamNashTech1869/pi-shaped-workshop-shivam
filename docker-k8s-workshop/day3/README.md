@@ -50,18 +50,6 @@ In Day 3 of this workshop, we focused on Kubernetes networking concepts, service
 
 ---
 
-## Screenshots
-
-- Deployment, Services, and Ingress applied successfully in Minikube:
-  `screenshots/terminal_deployment_services_ingress_minikube-ip.png`
-
-- Application accessed successfully via Ingress URL:
-  `screenshots/app_access_via_ingress.png`
-  
-- Application accessed successfully via NodePort URL:
-  `screenshots/app_access_via_nodePort.png`
-
-
 
 ## **Project Setup**
 
@@ -92,8 +80,8 @@ In Day 3 of this workshop, we focused on Kubernetes networking concepts, service
    kubectl apply -f ingress.yaml
    ```
 4. Access app using:
-  - NodePort URL: http://<minikube-ip>:30036/
-  - Ingress URL: http://<minikube-ip>/flask-app
+  - NodePort URL: http:// minikube-ip :30036/
+  - Ingress URL: http:// minikube-ip /flask-app
   
    Example:
    Run command:
@@ -106,3 +94,15 @@ In Day 3 of this workshop, we focused on Kubernetes networking concepts, service
    ```
    Access the app at: http://192.168.49.2/flask-app
 
+---
+
+## Screenshots
+
+- Deployment, Services, and Ingress applied successfully in Minikube:
+  ![Terminal_deployment](screenshots/terminal_deployment_services_ingress_minikube-ip.png)
+
+- Application accessed successfully via Ingress URL:
+  ![App_access_via_Ingress](screenshots/app_access_via_ingress.png)
+  
+- Application accessed successfully via NodePort URL:
+  ![App_access_via_NodePort](screenshots/app_access_via_nodePort.png)
