@@ -20,22 +20,6 @@ Apply Kubernetes concepts by deploying a real-world use case with a focus on per
 
 ---
 
-## Files and Their Roles
-
-| File/Folder                                      | Description                                                                 |
-|--------------------------------------------------|-----------------------------------------------------------------------------|
-| `flask-app/Chart.yaml`                           | Contains metadata about the Helm chart (name, version, etc.).              |
-| `flask-app/values.yaml`                          | Parameterized configuration values (image name, port, replica count).      |
-| `flask-app/templates/deployment.yaml`            | Template for the Kubernetes Deployment manifest.                           |
-| `flask-app/templates/service.yaml`               | Template for the Kubernetes Service manifest.                              |
-| `flask-app/templates/ingress.yaml`               | Template for the Kubernetes Ingress resource.                              |
-| `screenshots/helm_install_success.png`           | Screenshot showing `helm install` success.                                 |
-| `screenshots/helm-upgrade-replicas.png`          | Screenshot showing `helm upgrade` to increase replica count.               |
-| `.helmignore`                                    | Lists files/directories to ignore when packaging the chart.                |
-| `README.md`                                      | This file, containing full documentation and core questions.               |
-
----
-
 ## Core Concept Questions
 
 **Q1: Why are liveness and readiness probes critical in keeping a product’s user experience stable and reliable?**
@@ -65,5 +49,66 @@ Horizontal Pod Autoscaler (HPA) automatically scales the number of pod replicas 
 - **Image Name:** `shivam1869/frontend-app:day5` && `shivam1869/backend-app:day5`
 - **Docker Hub Repo Link:** `https://hub.docker.com/repositories/shivam1869`
 
+---
 
+## Installation & Upgrade Steps
+**1. Build Docker Images (optional if you want to build locally)**
 
+   ```bash
+    # From frontend directory
+    docker build -t shivam1869/frontend-app:day5 .
+
+    # From backend directory
+    docker build -t shivam1869/backend-app:day5 .
+   ```
+
+**2. Load Images into Minikube (if using minikube)**
+
+   ```bash
+    minikube image load shivam1869/frontend-app:day5
+    minikube image load shivam1869/backend-app:day5
+   ```
+**4. Verify Deployments and Services**
+
+   ```bash
+    kubectl get pods
+    kubectl get svc
+    kubectl get hpa
+   ```
+**5. Access Application**
+Frontend NodePort service URL: http://<minikube-ip>:<frontend-nodeport>
+   ```bash
+    minikube service frontend-service --url
+   ```
+API backend is accessible via service name inside cluster (backend-service), or via NodePort externally.
+**6. Check Logs (for debugging)**
+
+   ```bash
+   kubectl logs deployment/frontend-deployment
+   kubectl logs deployment/backend-deployment
+   ```
+
+**8. Monitor HPA**
+
+   ```bash
+  kubectl get hpa -w
+   ```
+**9. check the top resource usage (CPU, memory)**
+
+   ```bash
+  kubectl top pods
+   ```
+
+## Screenshots
+
+- Frontend docker build:
+  ![frontend-docker-build](screenshots/frontend-docker-build.png)
+
+- Backend docker build:
+  ![backend-docker-build](screenshots/backend-docker-build.png)
+
+- Docker push frontend & backend images:
+  ![docker_push_frontend-backend_images](screenshots/docker_push_frontend-backend_images.png)
+
+- Kubernetes Frontend & Backend Debug Summary:
+  ![Kubernetes_Frontend-Backend Debug Summary](screenshots/Kubernetes Frontend-Backend Debug Summary.png)
